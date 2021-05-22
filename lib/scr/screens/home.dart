@@ -181,7 +181,7 @@ class _HomeState extends State<Home> {
                           child: RichText(
                               text: TextSpan(children: [
                             TextSpan(
-                                text: "Rp15000",
+                                text: "Rp12000",
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w300,
