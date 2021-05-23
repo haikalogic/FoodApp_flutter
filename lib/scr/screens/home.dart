@@ -1,6 +1,6 @@
 import 'package:app_foodordering/scr/widgets/bottom_navigation.dart';
 import 'package:app_foodordering/scr/widgets/categories.dart';
-import 'package:app_foodordering/scr/widgets/commons.dart';
+import 'package:app_foodordering/scr/helpers/style.dart';
 import 'package:app_foodordering/scr/widgets/featured_product.dart';
 import 'package:app_foodordering/scr/widgets/small_button.dart';
 import 'package:app_foodordering/scr/widgets/title.dart';

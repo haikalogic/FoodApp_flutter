@@ -1,4 +1,4 @@
-import 'package:app_foodordering/scr/widgets/commons.dart';
+import 'package:app_foodordering/scr/helpers/style.dart';
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {

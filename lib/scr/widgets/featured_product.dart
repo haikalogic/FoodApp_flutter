@@ -1,5 +1,7 @@
+import 'package:app_foodordering/scr/helpers/screen_navigation.dart';
 import 'package:app_foodordering/scr/models/product.dart';
-import 'package:app_foodordering/scr/widgets/commons.dart';
+import 'package:app_foodordering/scr/helpers/style.dart';
+import 'package:app_foodordering/scr/screens/details.dart';
 import 'package:app_foodordering/scr/widgets/title.dart';
 import 'package:flutter/material.dart';
 
@@ -41,92 +43,98 @@ class Featured extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 240,
-                width: 200,
-                decoration: BoxDecoration(color: white, boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey[300],
-                      offset: Offset(1, 1),
-                      blurRadius: 4)
-                ]),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      "images/${productList[index].image}",
-                      height: 140,
-                      width: 140,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CustomText(text: productList[index].name),
-                        ),
-                        SizedBox(height: 4),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.grey[300],
-                                      offset: Offset(1, 1),
-                                      blurRadius: 4)
-                                ],
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: productList[index].wishList
-                                  ? Icon(
-                                      Icons.favorite,
-                                      size: 18,
-                                      color: red,
-                                    )
-                                  : Icon(
-                                      Icons.favorite_border,
-                                      size: 18,
-                                      color: red,
-                                    ),
-                            ),
+              child: GestureDetector(
+                onTap: () {
+                  changeScreen(context, Details(product: productList[index]));
+                },
+                child: Container(
+                  height: 240,
+                  width: 200,
+                  decoration: BoxDecoration(color: white, boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey[300],
+                        offset: Offset(1, 1),
+                        blurRadius: 4)
+                  ]),
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        "images/${productList[index].image}",
+                        height: 140,
+                        width: 140,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CustomText(text: productList[index].name),
                           ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: CustomText(
-                                text: productList[index].rating.toString(),
-                                color: grey,
-                                size: 12,
+                          SizedBox(height: 4),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey[300],
+                                        offset: Offset(1, 1),
+                                        blurRadius: 4)
+                                  ],
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: productList[index].wishList
+                                    ? Icon(
+                                        Icons.favorite,
+                                        size: 18,
+                                        color: red,
+                                      )
+                                    : Icon(
+                                        Icons.favorite_border,
+                                        size: 18,
+                                        color: red,
+                                      ),
                               ),
                             ),
-                            SizedBox(width: 2),
-                            Icon(Icons.star, color: red, size: 12),
-                            Icon(Icons.star, color: red, size: 12),
-                            Icon(Icons.star, color: red, size: 12),
-                            Icon(Icons.star, color: red, size: 12),
-                            Icon(Icons.star, color: red, size: 12),
-                            Icon(Icons.star, color: grey, size: 12)
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: CustomText(
-                              text: "Rp${productList[index].price.toString()}",
-                              size: 14,
-                              weight: FontWeight.bold),
-                        )
-                      ],
-                    )
-                  ],
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: CustomText(
+                                  text: productList[index].rating.toString(),
+                                  color: grey,
+                                  size: 12,
+                                ),
+                              ),
+                              SizedBox(width: 2),
+                              Icon(Icons.star, color: red, size: 12),
+                              Icon(Icons.star, color: red, size: 12),
+                              Icon(Icons.star, color: red, size: 12),
+                              Icon(Icons.star, color: red, size: 12),
+                              Icon(Icons.star, color: red, size: 12),
+                              Icon(Icons.star, color: grey, size: 12)
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: CustomText(
+                                text:
+                                    "Rp${productList[index].price.toString()}",
+                                size: 14,
+                                weight: FontWeight.bold),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             );

@@ -1,5 +1,5 @@
 import 'package:app_foodordering/scr/models/category.dart';
-import 'package:app_foodordering/scr/widgets/commons.dart';
+import 'package:app_foodordering/scr/helpers/style.dart';
 import 'package:app_foodordering/scr/widgets/title.dart';
 import 'package:flutter/material.dart';
 
