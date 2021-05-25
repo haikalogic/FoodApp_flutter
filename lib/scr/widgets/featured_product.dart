@@ -4,6 +4,7 @@ import 'package:app_foodordering/scr/helpers/style.dart';
 import 'package:app_foodordering/scr/screens/details.dart';
 import 'package:app_foodordering/scr/widgets/title.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 List<Product> productList = [
   Product(
@@ -58,10 +59,14 @@ class Featured extends StatelessWidget {
                   ]),
                   child: Column(
                     children: [
-                      Image.asset(
-                        "images/${productList[index].image}",
-                        height: 140,
-                        width: 140,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Image.asset(
+                          "images/${productList[index].image}",
+                          height: 140,
+                          width: 180,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,11 +130,15 @@ class Featured extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
-                            child: CustomText(
-                                text:
-                                    "Rp${productList[index].price.toString()}",
-                                size: 14,
-                                weight: FontWeight.bold),
+                            child: Text(
+                              NumberFormat.currency(
+                                      locale: "id",
+                                      symbol: "Rp ",
+                                      decimalDigits: 0)
+                                  .format(productList[index].price),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           )
                         ],
                       )
