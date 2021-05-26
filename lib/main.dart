@@ -1,4 +1,5 @@
 import 'package:app_foodordering/scr/screens/home.dart';
+import 'package:app_foodordering/scr/screens/login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Food App",
       theme: ThemeData(primarySwatch: Colors.red, fontFamily: "Varela"),
-      home: Home(),
+      home: LoginScreen(),
     );
   }
 }
