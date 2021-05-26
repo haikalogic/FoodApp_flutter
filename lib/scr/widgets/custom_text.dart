@@ -16,7 +16,8 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
           fontSize: size ?? 16,
           color: color ?? black,
-          fontWeight: weight ?? FontWeight.normal),
+          fontWeight: weight ?? FontWeight.normal,
+          fontFamily: "Varela"),
     );
   }
 }

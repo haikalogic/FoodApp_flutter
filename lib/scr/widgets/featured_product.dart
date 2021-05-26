@@ -2,7 +2,7 @@ import 'package:app_foodordering/scr/helpers/screen_navigation.dart';
 import 'package:app_foodordering/scr/models/product.dart';
 import 'package:app_foodordering/scr/helpers/style.dart';
 import 'package:app_foodordering/scr/screens/details.dart';
-import 'package:app_foodordering/scr/widgets/title.dart';
+import 'package:app_foodordering/scr/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

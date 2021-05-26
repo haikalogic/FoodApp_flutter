@@ -1,8 +1,9 @@
 import 'package:app_foodordering/scr/models/product.dart';
 import 'package:app_foodordering/scr/helpers/style.dart';
-import 'package:app_foodordering/scr/widgets/title.dart';
+import 'package:app_foodordering/scr/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:intl/intl.dart';
 
 class Details extends StatefulWidget {
   final Product product;
@@ -59,27 +60,29 @@ class _DetailsState extends State<Details> {
                         child: Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
+                              padding: const EdgeInsets.only(top: 2.0),
                               child: Stack(
                                 children: [
-                                  Icon(
-                                    Icons.shopping_bag_outlined,
-                                    color: white,
-                                    size: 32,
-                                  ),
+                                  IconButton(
+                                      icon: Icon(
+                                        Icons.shopping_bag_outlined,
+                                        color: white,
+                                        size: 28,
+                                      ),
+                                      onPressed: () {}),
                                 ],
                               ),
                             ),
                             Positioned(
-                              right: 7,
-                              bottom: 0,
+                              right: 10,
+                              bottom: 6,
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: white,
                                     borderRadius: BorderRadius.circular(10),
                                     boxShadow: [
                                       BoxShadow(
-                                          color: grey,
+                                          color: Colors.grey[400],
                                           offset: Offset(2, 1),
                                           blurRadius: 3)
                                     ]),
@@ -125,6 +128,55 @@ class _DetailsState extends State<Details> {
                   )
                 ],
               ),
+            ),
+            CustomText(
+              text: widget.product.name,
+              size: 26,
+              weight: FontWeight.bold,
+            ),
+            Text(
+              NumberFormat.currency(
+                      locale: "id", symbol: "Rp ", decimalDigits: 0)
+                  .format(widget.product.price),
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.w600, color: red),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                      icon: Icon(Icons.remove, size: 28, color: red),
+                      onPressed: () {}),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: red, borderRadius: BorderRadius.circular(5)),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(28.0, 12.0, 28.0, 12.0),
+                      child: CustomText(
+                        text: "Add to Bag",
+                        size: 20,
+                        color: white,
+                        weight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                      icon: Icon(Icons.add, size: 28, color: red),
+                      onPressed: () {}),
+                ),
+              ],
             )
           ],
         ),

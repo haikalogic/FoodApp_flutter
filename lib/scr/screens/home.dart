@@ -1,10 +1,14 @@
+import 'package:app_foodordering/scr/helpers/screen_navigation.dart';
+import 'package:app_foodordering/scr/models/product.dart';
+import 'package:app_foodordering/scr/screens/bag.dart';
 import 'package:app_foodordering/scr/widgets/bottom_navigation.dart';
 import 'package:app_foodordering/scr/widgets/categories.dart';
 import 'package:app_foodordering/scr/helpers/style.dart';
 import 'package:app_foodordering/scr/widgets/featured_product.dart';
 import 'package:app_foodordering/scr/widgets/small_button.dart';
-import 'package:app_foodordering/scr/widgets/title.dart';
+import 'package:app_foodordering/scr/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,6 +16,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Product product = Product(
+    name: "Bakso",
+    price: 15000,
+    rating: 4.2,
+    vendor: "Bakso Solo",
+    wishList: true,
+    image: "bakso.jpg",
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +103,7 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.all(0),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset("images/bakso.jpg")),
+                          child: Image.asset("images/${product.image}")),
                     ),
                   ),
                   Padding(
@@ -117,7 +129,7 @@ class _HomeState extends State<Home> {
                                     size: 20,
                                   ),
                                 ),
-                                Text("4.5")
+                                Text(product.rating.toString())
                               ],
                             ),
                           ),
@@ -155,38 +167,48 @@ class _HomeState extends State<Home> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
                           child: RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: "Bakso \n",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
-                                    color: white)),
-                            TextSpan(
-                                text: "by: ",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                    color: white)),
-                            TextSpan(
-                                text: "Bakso Solo",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: white)),
-                          ], style: TextStyle(color: black))),
+                              text: TextSpan(
+                                  children: [
+                                TextSpan(
+                                    text: product.name + "\n",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        color: white)),
+                                TextSpan(
+                                    text: "by: ",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300,
+                                        color: white)),
+                                TextSpan(
+                                    text: product.vendor,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: white)),
+                              ],
+                                  style: TextStyle(
+                                      color: black, fontFamily: "Varela"))),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: "Rp 12.000",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w300,
-                                    color: white))
-                          ], style: TextStyle(color: black))),
+                              text: TextSpan(
+                                  children: [
+                                TextSpan(
+                                    text: NumberFormat.currency(
+                                      locale: "id",
+                                      symbol: "Rp ",
+                                      decimalDigits: 0,
+                                    ).format(product.price),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w300,
+                                        color: white))
+                              ],
+                                  style: TextStyle(
+                                      color: black, fontFamily: "Varela"))),
                         )
                       ],
                     ),
@@ -199,7 +221,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 60,
+        height: 65,
         color: white,
         child: Padding(
           padding: const EdgeInsets.all(4),
@@ -215,6 +237,9 @@ class _HomeState extends State<Home> {
                 name: "Nearby",
               ),
               BottomNavIcon(
+                onTap: () {
+                  changeScreen(context, ShoppingBag());
+                },
                 image: "shopping-bag.png",
                 name: "Cart",
               ),
